@@ -53,7 +53,7 @@
 				  echo "<td>" . $row["email"] . "</td>";
 				  echo "<td>" . $row["descripcion"] . "</td>";
 				  echo "<td><a href='editar_proveedor.php?id=" . $row['id_prov'] . "' class='btn btn-primary'>Editar</a>";
-				  echo '<form action="borrar.php" method="post" style="display: inline;">
+				  echo '<form action="borrar.php" method="get" style="display: inline;">
 				  <input type="hidden" name="id" value="' . $row['id_prov'] . '">
 				  <input type="submit" value="Borrar" onclick="return confirm(\'Esta seguro de borrar?\')" class="btn btn-success">
 				</form>';
