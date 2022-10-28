@@ -67,10 +67,8 @@
 			?>
 		</tbody>
 	</table>
-    <a href="crear_proveedor.php" class="btn">Ir a la alta de proveedor</a>
-	<form action="crear_proveedor.php" style="display: inline;">
-		<input type="submit" value="Crear btn Formulario" class="btn ">
-	</form> 
+    <a href="crear_proveedor.php" class="btn btn-dark">Ir a la alta de proveedor</a>
+	
 	</div>
 	</div>
 </body>
