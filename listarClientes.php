@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-	<title>Lista de elementos</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.12.1/datatables.min.css"/>
+     
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.12.1/datatables.min.js"></script>
+
+    <title>Lista de elementos</title>
 
 </head>
 <body>
@@ -30,17 +34,19 @@
 	$result = $conn->query($sql);
 
 	?>
-	<p style="text-align: center;">El registro insertado es:</p>
+	
 	<div class="row justify-content-center">
     <div class="col-11">
-	<table class="table table__list table-hover table-dark table-striped"  style="width: 100%;">
-		<tr>
-			<th class="table-secondary">#</th>
-			<th class="table-secondary">Nombre</th>
-			<th class="table-secondary">Email</th>
-			<th class="table-secondary">Descripción</th>
-			
-		</tr>
+	<table id="clientes" class="table table__list table-hover table-dark table-striped"  style="width: 100%;">
+        <thead>
+            <tr>
+                <th class="table-secondary">#</th>
+                <th class="table-secondary">Nombre</th>
+                <th class="table-secondary">Email</th>
+                <th class="table-secondary">Descripción</th>
+                <th class="table-secondary" >Acciones</th>
+            </tr>
+        </thead>
 		<tbody>
 			<?php
 			if ($result->num_rows > 0) {
@@ -51,7 +57,11 @@
 				  echo "<td>" . $row["nombre"] . "</td>";
 				  echo "<td>" . $row["email"] . "</td>";
 				  echo "<td>" . $row["descripcion"] . "</td>";
-				  
+                  echo "<td><a href='" . $row['id'] . "' class='btn btn-primary'>Editar</a>";
+				  echo '<form action="" method="get" style="display: inline;">
+				  <input type="hidden" name="id" value="' . $row['id'] . '">
+				  <input type="submit" value="Borrar" onclick="return confirm(\'Esta seguro de borrar?\')" class="btn btn-success">
+				  </form>';
 				  echo "</td>";
 				  echo "</tr>";
 				  
@@ -62,6 +72,12 @@
 			?>
 		</tbody>
 	</table>
+
+    <script>
+        $(document).ready(function () {
+        $('#clientes').DataTable();
+        });
+    </script>
     <a href="index.html" class="btn btn-dark">Ir a la al menu</a>
 	
 	</div>
