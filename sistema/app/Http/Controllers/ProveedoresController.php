@@ -14,8 +14,10 @@ class ProveedoresController extends Controller
      */
     public function index()
     {
+        $prov = proveedores::paginate();
+
+        return view('proveedores.lista',['prov'=>$prov]);
         //
-        return("Hola Mundo");
     }
 
     /**
